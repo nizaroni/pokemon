@@ -7,7 +7,7 @@
     this.pokemons = [];
 	};
 
-	Pokedex.prototype.fetchThemAll = function () {
+	Pokedex.prototype.fetchThemAll = function (callback) {
 		var pokedex = this;
 		$.ajax({
 			url: this.url,
@@ -17,6 +17,7 @@
           var pokemon = new PokeApi.Pokemon(pokeInfo);
           pokedex.pokemons.push(pokemon);
         });
+        callback();
 			}
 		});
 	};
