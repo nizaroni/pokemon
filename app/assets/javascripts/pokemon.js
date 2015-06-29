@@ -1,19 +1,21 @@
 (function () {
 
-	window.Pokedex = window.Pokedex || {};
+	window.PokeApi = window.PokeApi || {};
 
-	var Pokemon = Pokedex.Pokemon = function () {
+	var Pokemon = PokeApi.Pokemon = function (pokeInfo) {
 		this.url = "/api/pokemon/";
-	}
+		this.id = parseInt(pokeInfo.resource_uri.slice(15, -1));
+		this.name = pokeInfo.name;
+	};
 
-	Pokemon.prototype.fetch = function (id) {
+	Pokemon.prototype.fetch = function () {
 		var pokemon = this;
 		$.ajax({
-			url: this.url + id,
+			url: this.url + this.id,
 			method: "GET",
 			success: function (pokemonInfo) {
 				$.extend(pokemon, pokemonInfo);
 			}
-		})
-	}
+		});
+	};
 })()
