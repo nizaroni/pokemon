@@ -1,1 +1,13 @@
 <h1>Hello</h1>
+
+<div class="pokedex-container">
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    var $container = $("div.pokedex-container");
+    window.pokedexView = new PokeApi.Views.PokedexView($container);
+    pokedexView.render();
+  });
+
+</script>
