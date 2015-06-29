@@ -11,7 +11,7 @@
 	PokedexView.prototype.render = function () {
     var view = this;
     this.pokedex.pokemons.forEach(function (pokemon) {
-      var pokemonView = new PokeApi.Views.PokemonIndexView(view.$el, pokemon);
+      var pokemonView = new PokeApi.Views.PokemonItemView(view.$el, pokemon);
       pokemonView.render();
     });
 
