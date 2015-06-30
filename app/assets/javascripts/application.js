@@ -15,9 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
+(function() {
   if ($(".pokedex-container").length) {
     var $container = $("div.pokedex-container");
     window.appRouter = new PokeApi.AppRouter($container);
   }
-});
+})();
