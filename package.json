@@ -1,0 +1,25 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/khalifenizar/pokemon/issues"
+  },
+  "contributors": [
+    "Llorenç Muntaner <llorenc.muntaner@gmail.com>",
+    "Nizar Khalife Iglesias <khalifenizar@gmail.com>"
+  ],
+  "dependencies": {
+    "browserify": "^10.2.4",
+    "browserify-incremental": "^3.0.1"
+  },
+  "homepage": "https://github.com/khalifenizar/pokemon#readme",
+  "license": "ISC",
+  "main": "app/assets/javascripts/application.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khalifenizar/pokemon.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
