@@ -16,8 +16,5 @@
 
 var AppRouter = require("./app_router.js");
 
-if ($(".pokedex-container").length) {
-  var $container = $("div.pokedex-container");
-
-  var router = new AppRouter($container);
-}
+var $container = $("div.pokedex-container");
+var router = new AppRouter($container);
