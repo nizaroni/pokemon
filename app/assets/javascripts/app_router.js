@@ -1,4 +1,4 @@
-var Pokedex = require("./pokedex.js");
+var Pokedex = require("./models/pokedex.js");
 var PokedexView = require("./pokedex_view.js");
 
 var AppRouter = function ($element) {
