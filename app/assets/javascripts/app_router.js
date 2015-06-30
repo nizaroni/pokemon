@@ -1,22 +1,22 @@
-(function () {
+var Pokedex = require("./pokedex.js");
+var PokedexView = require("./pokedex_view.js");
 
-	window.PokeApi = window.PokeApi || {};
+var AppRouter = function ($element) {
+  this.pokedex = new Pokedex();
+  this.pokedex.fetchThemAll(this.renderPokedex.bind(this));
+	this.$el = $element;
+  this.renderPokedex();
+};
 
-	var AppRouter = PokeApi.AppRouter = function ($element) {
-    this.pokedex = new PokeApi.Pokedex();
-    this.pokedex.fetchThemAll(this.renderPokedex.bind(this));
-		this.$el = $element;
-    this.renderPokedex();
-	};
+AppRouter.prototype.renderPokedex = function () {
+  var pokedexView = new PokedexView(this.pokedex);
+  this.renderView(pokedexView);
+}
 
-  AppRouter.prototype.renderPokedex = function () {
-    var pokedexView = new PokeApi.Views.PokedexView(this.pokedex);
-    this.renderView(pokedexView);
-  }
+AppRouter.prototype.renderView = function (view) {
+  this.$el.empty();
+  view.render();
+  this.$el.append(view.$el);
+}
 
-  AppRouter.prototype.renderView = function (view) {
-    this.$el.empty();
-    view.render();
-    this.$el.append(view.$el);
-  }
-})()
+module.exports = AppRouter;

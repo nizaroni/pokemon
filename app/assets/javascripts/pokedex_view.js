@@ -1,20 +1,18 @@
-(function () {
+var PokemonItemView = require("./pokemon_item_view.js");
 
-	window.PokeApi = window.PokeApi || {};
-  window.PokeApi.Views = window.PokeApi.Views || {};
+var PokedexView = function (pokedex) {
+  this.pokedex = pokedex
+  this.$el = $("<ul>");
+};
 
-	var PokedexView = PokeApi.Views.PokedexView = function (pokedex) {
-    this.pokedex = pokedex
-    this.$el = $("<ul>");
-	};
+PokedexView.prototype.render = function () {
+  var view = this;
+  this.pokedex.pokemons.forEach(function (pokemon) {
+    var pokemonView = new PokemonItemView(view.$el, pokemon);
+    pokemonView.render();
+  });
 
-	PokedexView.prototype.render = function () {
-    var view = this;
-    this.pokedex.pokemons.forEach(function (pokemon) {
-      var pokemonView = new PokeApi.Views.PokemonItemView(view.$el, pokemon);
-      pokemonView.render();
-    });
+  return this;
+};
 
-    return this;
-	};
-})()
+module.exports = PokedexView;

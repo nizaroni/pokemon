@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 
-(function() {
-  if ($(".pokedex-container").length) {
-    var $container = $("div.pokedex-container");
-    window.appRouter = new PokeApi.AppRouter($container);
-  }
-})();
+var AppRouter = require("./app_router.js");
+
+if ($(".pokedex-container").length) {
+  var $container = $("div.pokedex-container");
+
+  var router = new AppRouter($container);
+}
