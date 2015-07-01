@@ -1,13 +1,10 @@
-var PokemonShowView = function ($parentEl, pokemon) {
-    this.$parentEl = $parentEl;
+var PokemonShowView = function (pokemon) {
     this.pokemon = pokemon;
     this.$el = $("<p>");
 };
 
 PokemonShowView.prototype.render = function () {
     this.$el.html(this.pokemon.name);
-    this.$parentEl.append(this.$el);
-
     return this;
 };
 
