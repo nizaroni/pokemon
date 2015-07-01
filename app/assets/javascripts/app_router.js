@@ -1,22 +1,48 @@
 var Pokedex = require("./models/pokedex.js");
 var PokedexView = require("./pokedex_view.js");
+var PokemonShowView = require("./pokemon_show_view.js");
 
-var AppRouter = function ($element) {
+var AppRouter = function (routes) {
   this.pokedex = new Pokedex();
-  this.pokedex.fetchThemAll(this.renderPokedex.bind(this));
-	this.$el = $element;
-  this.renderPokedex();
+  this.routes = routes;
+  this.container;
+};
+
+AppRouter.prototype.go = function (route) {
+  var regexRoute = /[\w-]+\//;
+  var routeName = route.match(regexRoute)[0];
+  var regexId = /\/(\d+)/;
+  var id = route.match(regexId) == null ? null : parseInt(route.match(regexId)[1]);
+  routeName = id ? routeName + ":id" : routeName;
+  var methodToCall = this.routes[routeName];
+  this[methodToCall](id);
 };
 
 AppRouter.prototype.renderPokedex = function () {
   var pokedexView = new PokedexView(this.pokedex);
+  this.pokedex.fetchThemAll(pokedexView.render.bind(pokedexView));
   this.renderView(pokedexView);
+  var self = this;
+  $("ul.pokedex-list").on("click", "a", function (event) {
+    var pokemonId = $(event.currentTarget).attr("pokemon-id");
+    self.renderPokemonShow(pokemonId);
+  });
+}
+
+AppRouter.prototype.renderPokemonShow = function (id) {
+  var pokemon = this.pokedex.get(id);
+  var pokemonShowView = new PokemonShowView(pokemon)
+  pokemon.fetch(pokemonShowView.render.bind(pokemonShowView));
+  this.renderView(pokemonShowView);
 }
 
 AppRouter.prototype.renderView = function (view) {
-  this.$el.empty();
+  this.container.empty();
   view.render();
-  this.$el.append(view.$el);
+  this.container.append(view.$el);
 }
 
-module.exports = AppRouter;
+module.exports = new AppRouter({
+  "pokedex/": "renderPokedex",
+  "pokemon-show/:id": "renderPokemonShow"
+});

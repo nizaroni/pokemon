@@ -2,7 +2,7 @@ var PokemonItemView = require("./pokemon_item_view.js");
 
 var PokedexView = function (pokedex) {
   this.pokedex = pokedex
-  this.$el = $("<ul>");
+  this.$el = $("<ul>").addClass("pokedex-list");
 };
 
 PokedexView.prototype.render = function () {
