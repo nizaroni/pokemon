@@ -22,6 +22,9 @@ AppRouter.prototype.renderPokedex = function () {
   var pokedexView = new PokedexView(this.pokedex);
   this.pokedex.fetchThemAll(pokedexView.render.bind(pokedexView));
   this.renderView(pokedexView);
+  $("ul.pokedex-list").on("click", "a", function () {
+    console.log("hello there!");
+  });
 }
 
 AppRouter.prototype.renderPokemonShow = function (id) {

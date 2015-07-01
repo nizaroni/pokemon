@@ -5,7 +5,7 @@ var PokemonItemView = function ($parentEl, pokemon) {
 };
 
 PokemonItemView.prototype.render = function () {
-    this.$el.html(this.pokemon.name);
+    this.$el.html("<a href='#'>" + this.pokemon.name + "</a>");
     this.$parentEl.append(this.$el);
 
     return this;
