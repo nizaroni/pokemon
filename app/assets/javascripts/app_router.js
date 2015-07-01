@@ -30,7 +30,6 @@ AppRouter.prototype.renderPokedex = function () {
 }
 
 AppRouter.prototype.renderPokemonShow = function (id) {
-  debugger;
   var pokemon = this.pokedex.get(id);
   var pokemonShowView = new PokemonShowView(pokemon)
   pokemon.fetch(pokemonShowView.render.bind(pokemonShowView));
