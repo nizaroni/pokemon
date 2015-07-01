@@ -4,13 +4,14 @@ var Pokemon = function (pokeInfo) {
 	this.name = pokeInfo.name;
 };
 
-Pokemon.prototype.fetch = function () {
+Pokemon.prototype.fetch = function (callback) {
 	var pokemon = this;
 	$.ajax({
 		url: this.url + this.id,
 		method: "GET",
 		success: function (pokemonInfo) {
 			$.extend(pokemon, pokemonInfo);
+			callback();
 		}
 	});
 };

@@ -5,6 +5,12 @@ var Pokedex = function () {
   this.pokemons = [];
 };
 
+Pokedex.prototype.get = function (id, callback) {
+	return this.pokemons.filter(function (pokemon) {
+		return pokemon.id == id;
+	})[0];
+};
+
 Pokedex.prototype.fetchThemAll = function (callback) {
 	var pokedex = this;
 	$.ajax({
