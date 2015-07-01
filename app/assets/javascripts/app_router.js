@@ -5,7 +5,7 @@ var PokemonShowView = require("./pokemon_show_view.js");
 var AppRouter = function (routes) {
   this.pokedex = new Pokedex();
   this.routes = routes;
-	this.container;
+  this.container;
 };
 
 AppRouter.prototype.go = function (route) {
