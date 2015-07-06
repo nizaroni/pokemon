@@ -26,7 +26,7 @@ AppRouter.prototype.renderPokedex = function () {
   $("ul.pokedex-list").on("click", "a", function (event) {
     event.preventDefault();
     var pokemonId = $(event.currentTarget).attr("pokemon-id");
-    self.renderPokemonShow(pokemonId);
+    self.go("pokemon-show/" + pokemonId);
   });
 }
 
