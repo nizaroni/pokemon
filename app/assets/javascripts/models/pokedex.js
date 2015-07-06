@@ -5,7 +5,7 @@ var Pokedex = function () {
   this.pokemons = [];
 };
 
-Pokedex.prototype.get = function (id, callback) {
+Pokedex.prototype.get = function (id) {
   return this.pokemons.filter(function (pokemon) {
     return pokemon.id == id;
   })[0];

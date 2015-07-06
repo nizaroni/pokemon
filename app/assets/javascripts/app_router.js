@@ -1,6 +1,6 @@
 var Pokedex = require("./models/pokedex.js");
-var PokedexView = require("./pokedex_view.js");
-var PokemonShowView = require("./pokemon_show_view.js");
+var PokedexController = require("./pokedex_controller.js");
+var PokemonShowController = require("./pokemon_show_controller.js");
 
 var AppRouter = function (routes) {
   this.pokedex = new Pokedex();
@@ -19,9 +19,9 @@ AppRouter.prototype.go = function (route) {
 };
 
 AppRouter.prototype.renderPokedex = function () {
-  var pokedexView = new PokedexView(this.pokedex);
-  this.pokedex.fetchThemAll(pokedexView.render.bind(pokedexView));
-  this.renderView(pokedexView);
+  var pokedexController = new PokedexController(this.pokedex);
+  this.pokedex.fetchThemAll(pokedexController.render.bind(pokedexController));
+  this.renderView(pokedexController);
   var self = this;
   $("ul.pokedex-list").on("click", "a", function (event) {
     event.preventDefault();
@@ -32,9 +32,9 @@ AppRouter.prototype.renderPokedex = function () {
 
 AppRouter.prototype.renderPokemonShow = function (id) {
   var pokemon = this.pokedex.get(id);
-  var pokemonShowView = new PokemonShowView(pokemon)
-  pokemon.fetch(pokemonShowView.render.bind(pokemonShowView));
-  this.renderView(pokemonShowView);
+  var pokemonShowController = new PokemonShowController(pokemon)
+  pokemon.fetch(pokemonShowController.render.bind(pokemonShowController));
+  this.renderView(pokemonShowController);
 }
 
 AppRouter.prototype.renderView = function (view) {
