@@ -1,11 +1,10 @@
-var Pokedex = require("./models/pokedex.js");
 var PokedexController = require("./pokedex_controller.js");
 var PokemonShowController = require("./pokemon_show_controller.js");
+var Pokedex = require("./models/pokedex.js");
 
 var AppRouter = function (routes) {
   this.pokedex = new Pokedex();
   this.routes = routes;
-  this.container;
 };
 
 AppRouter.prototype.go = function (route) {
@@ -20,7 +19,6 @@ AppRouter.prototype.go = function (route) {
 
 AppRouter.prototype.renderPokedex = function () {
   var pokedexController = new PokedexController(this, this.pokedex);
-  this.pokedex.fetchThemAll(pokedexController.render.bind(pokedexController));
   this.renderView(pokedexController);
 }
 

@@ -1,12 +1,13 @@
 var PokemonItemController = require("./pokemon_item_controller.js");
 
 var PokedexController = function (router, pokedex) {
-  this.pokedex = pokedex
+  this.pokedex = pokedex;
   this.$el = $("<ul>").addClass("pokedex-list");
   this.router = router;
 };
 
 PokedexController.prototype.render = function () {
+  this.pokedex.fetchThemAll(this.render.bind(this));
   var view = this;
   this.pokedex.pokemons.forEach(function (pokemon) {
     var pokemonView = new PokemonItemController(view.$el, pokemon);
