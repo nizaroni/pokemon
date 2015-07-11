@@ -7,8 +7,8 @@ var PokedexController = function (router, pokedex) {
 };
 
 PokedexController.prototype.render = function () {
-  this.pokedex.fetchThemAll(this.render.bind(this));
   var view = this;
+  
   this.pokedex.pokemons.forEach(function (pokemon) {
     var pokemonView = new PokemonItemController(view.$el, pokemon);
     pokemonView.render();
