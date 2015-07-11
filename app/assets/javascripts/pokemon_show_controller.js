@@ -4,7 +4,6 @@ var PokemonShowController = function (pokemon) {
 };
 
 PokemonShowController.prototype.render = function () {
-  this.pokemon.fetch(this.render.bind(this));
   this.$el.html(this.pokemon.name);
   return this;
 };

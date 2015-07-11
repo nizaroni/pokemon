@@ -19,12 +19,14 @@ AppRouter.prototype.go = function (route) {
 
 AppRouter.prototype.renderPokedex = function () {
   var pokedexController = new PokedexController(this, this.pokedex);
+  this.pokedex.fetchThemAll(pokedexController.render.bind(pokedexController));
   this.renderView(pokedexController);
 }
 
 AppRouter.prototype.renderPokemonShow = function (id) {
   var pokemon = this.pokedex.get(id);
   var pokemonShowController = new PokemonShowController(pokemon)
+  pokemon.fetch(pokemonShowController.render.bind(pokemonShowController));
   this.renderView(pokemonShowController);
 }
 
