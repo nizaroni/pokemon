@@ -11,9 +11,25 @@ Pokemon.prototype.fetch = function (callback) {
     method: "GET",
     success: function (pokemonInfo) {
       $.extend(pokemon, pokemonInfo);
-      callback();
+      pokemon.fetchSprite(pokemonInfo, pokemonInfo.sprites[0].resource_uri, callback);
     }
   });
 };
+
+Pokemon.prototype.fetchSprite = function(data, endpoint, callback) {
+  spriteId = endpoint.split("/")[4];
+  var pokemon = this;
+  $.ajax({
+    url: "/api/sprite/" + spriteId,
+    success: function(sprite) {
+      console.log("got sprite");
+      pokemon.sprite = sprite;
+      callback(pokemon);
+    },
+    error: function(err) {
+      console.log(err);
+    } 
+  });
+}
 
 module.exports = Pokemon;
